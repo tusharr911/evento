@@ -1,7 +1,6 @@
 import SearchForm from "@/components/SearchForm";
 import Link from "next/link";
 import H1 from "@/components/Heading";
-
 export default function Home() {
   return (
     <main className="flex flex-col items-center pt-36 px-3 ">

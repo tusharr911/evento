@@ -1,4 +1,5 @@
 import H1 from "@/components/Heading";
+import { sleep } from "@/lib/Utils";
 import Image from "next/image";
 
 type eventPageProps = {
@@ -12,6 +13,7 @@ async function eventPage({ params }: eventPageProps) {
   const response = await fetch(
     `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
   );
+  await sleep();
   const event = await response.json();
   return (
     <main>
@@ -53,7 +55,23 @@ async function eventPage({ params }: eventPageProps) {
           </div>
         </div>
       </section>
-      <div></div>
+      <div>
+        <section className="text-center px-5 py-16 mb-5">
+          <h2 className="text-2xl">About this event </h2>
+          <p className="max-w-4xl mx-auto text-lg text-white/75 leading-8 ">
+            {event.description}
+          </p>
+        </section>
+        <section
+          className="text-center px-3 py-8
+        "
+        >
+          <h2 className="text-2xl">Location </h2>
+          <p className="max-w-4xl mx-auto text-lg text-white/75 leading-8 ">
+            {event.location}
+          </p>
+        </section>
+      </div>
     </main>
   );
 }
