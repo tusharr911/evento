@@ -1,7 +1,7 @@
 import H1 from "@/components/Heading";
 import Image from "next/image";
 import { Metadata } from "next";
-import { fetchedEventsTypes } from "@/lib/types";
+import { getEvents } from "@/lib/Utils";
 type Props = {
   params: {
     slug: string;
@@ -10,10 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
-  const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
-  );
-  const event: fetchedEventsTypes = await response.json();
+  const event = await getEvents(slug);
 
   return {
     title: event.name,
@@ -22,10 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function eventPage({ params }: Props) {
   const slug = params.slug;
-  const response = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events/${slug}`
-  );
-  const event: fetchedEventsTypes = await response.json();
+  const event = await getEvents(slug);
+
   return (
     <main>
       <section className="relative  overflow-hidden flex items-center justify-center py-14 md:py-20 ">

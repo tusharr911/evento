@@ -1,15 +1,12 @@
-import { fetchedEventsTypes } from "@/lib/types";
 import EventCard from "./EventCard";
+import { getEvent } from "@/lib/Utils";
 
 type Props = {
   city: string;
 };
 
 async function EventList({ city }: Props) {
-  const data = await fetch(
-    `https://bytegrad.com/course-assets/projects/evento/api/events?city=${city}`
-  );
-  const events: fetchedEventsTypes[] = await data.json();
+  const events = await getEvent(city);
   return (
     <section className="flex flex-wrap gap-10 justify-center  min-w-[1100px] px-[20px]">
       {events.map((event) => (
