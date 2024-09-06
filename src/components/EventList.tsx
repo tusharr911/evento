@@ -1,5 +1,5 @@
 import EventCard from "./EventCard";
-import { getEvent } from "@/lib/Utils";
+import { getEvent } from "@/lib/server-utils";
 import PaginationControls from "./Pagination-Controls";
 
 type Props = {

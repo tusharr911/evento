@@ -23,6 +23,8 @@ export function generateMetadata({ params }: Props): Metadata {
 
 const pageNumberSchema = z.coerce.number().int().positive().optional();
 
+
+
 async function EventsPage({ params, searchParams }: EventPageProps) {
   const city = params.city;
   const validatedPageNumber = pageNumberSchema.safeParse(searchParams.page);
